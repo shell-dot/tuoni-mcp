@@ -243,7 +243,7 @@ async def test_slow_initial_login_does_not_delay_mcp_handshake(monkeypatch, fake
     with anyio.fail_after(2):
         async with create_connected_server_and_client_session(server.protocol_server) as session:
             tools = await session.list_tools()
-            assert len(tools.tools) == (12 if events else 11)
+            assert len(tools.tools) == (13 if events else 12)
             await started.wait()
     assert cancelled.is_set()
 

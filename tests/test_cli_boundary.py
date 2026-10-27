@@ -31,7 +31,7 @@ def test_doctor_offline_is_json_and_does_not_start_mcp_or_contact_backend():
     report = json.loads(process.stdout)
     assert report["ok"] is True
     assert report["backend"]["status"] == "not_checked"
-    assert report["catalog"]["enabled_operations"] == 11
+    assert report["catalog"]["enabled_operations"] == 12
     assert not process.stderr
     assert "secret-marker" not in process.stdout
     assert "127.0.0.1" not in process.stdout

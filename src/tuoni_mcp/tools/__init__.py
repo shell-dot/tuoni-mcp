@@ -9,6 +9,7 @@ from tuoni_mcp.registry import ToolRegistry, collect_decorated_module
 from tuoni_mcp.tools import (
     agents,
     aliases,
+    api_spec,
     command_history,
     commands,
     diagnostics,
@@ -25,7 +26,7 @@ from tuoni_mcp.tools import (
 )
 
 # The default agent-ops profile uses explicit ToolSpec providers.
-FIRST_PARTY_PROVIDERS = (agents, commands, command_history, events, diagnostics)
+FIRST_PARTY_PROVIDERS = (agents, commands, command_history, events, diagnostics, api_spec)
 
 # Optional profiles declare decorated handlers, which the collector converts
 # directly into ToolSpecs without retaining FastMCP Tool objects.

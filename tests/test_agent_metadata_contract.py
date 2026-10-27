@@ -76,7 +76,7 @@ async def test_network_metadata_capabilities_and_new_templates_use_existing_tool
     server = build_server(replace(cfg, mode=mode))
     async with create_connected_server_and_client_session(server.protocol_server) as session:
         catalog = await session.list_tools()
-        assert len(catalog.tools) == (11 if mode is MCPMode.NATIVE else 4)
+        assert len(catalog.tools) == (12 if mode is MCPMode.NATIVE else 4)
 
         async def call(name, arguments):
             if mode is MCPMode.DISPATCH:

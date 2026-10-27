@@ -15,8 +15,8 @@ The default profile is `agent-ops`. `TUONI_MCP_MODE` selects native or dispatch;
 
 | Mode | Read-only | Exposed default entrypoints |
 | --- | --- | --- |
-| Native | No | `tuoni_agents_list`, `tuoni_agent_get`, `tuoni_commands_search`, `tuoni_command_describe`, `tuoni_command_prepare`, `tuoni_command_update_prepare`, `tuoni_command_stop_prepare`, `tuoni_operation_execute`, `tuoni_command_get`, `tuoni_commands_list`, `tuoni_capabilities` |
-| Native | Yes | `tuoni_agents_list`, `tuoni_agent_get`, `tuoni_commands_search`, `tuoni_command_describe`, `tuoni_command_get`, `tuoni_commands_list`, `tuoni_capabilities` |
+| Native | No | `tuoni_agents_list`, `tuoni_agent_get`, `tuoni_commands_search`, `tuoni_command_describe`, `tuoni_command_prepare`, `tuoni_command_update_prepare`, `tuoni_command_stop_prepare`, `tuoni_operation_execute`, `tuoni_command_get`, `tuoni_commands_list`, `tuoni_capabilities`, `tuoni_api_spec` |
+| Native | Yes | `tuoni_agents_list`, `tuoni_agent_get`, `tuoni_commands_search`, `tuoni_command_describe`, `tuoni_command_get`, `tuoni_commands_list`, `tuoni_capabilities`, `tuoni_api_spec` |
 | Dispatch | No | `tuoni_find_tool`, `tuoni_tool_schema`, `tuoni_call`, `tuoni_operation_execute` |
 | Dispatch | Yes | `tuoni_find_tool`, `tuoni_tool_schema`, `tuoni_call` |
 
@@ -30,14 +30,14 @@ Read-only availability below means exposure when `TUONI_MCP_READ_ONLY=true`, not
 
 | Profile | Native tools | Read-only native tools | Included in `all` |
 | --- | ---: | ---: | --- |
-| `agent-ops` | 11 | 7 | Yes |
-| `access` | 19 | 11 | Yes |
-| `artifacts` | 9 | 5 | Yes |
-| `discovery` | 13 | 4 | Yes |
-| `administration` | 20 | 6 | Yes |
-| `authoring` | 10 | 7 | Yes |
-| `events` | 2 | 2 | Yes |
-| `raw` | 2 | 1 | No |
+| `agent-ops` | 12 | 8 | Yes |
+| `access` | 20 | 12 | Yes |
+| `artifacts` | 10 | 6 | Yes |
+| `discovery` | 14 | 5 | Yes |
+| `administration` | 21 | 7 | Yes |
+| `authoring` | 11 | 8 | Yes |
+| `events` | 3 | 3 | Yes |
+| `raw` | 3 | 2 | No |
 
 ## Dispatch entrypoint schemas
 
@@ -271,6 +271,38 @@ Required arguments: None. Response budget: 4,096 bytes.
     "search": {
       "maxLength": 256,
       "minLength": 1,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
+
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
       "type": "string"
     }
   },
@@ -895,6 +927,38 @@ Required arguments: `preparation_id`. Response budget: 8,192 bytes.
 </details>
 
 ## `access` tools
+
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
 
 ### `tuoni_capabilities`
 
@@ -1543,6 +1607,38 @@ Required arguments: None. Response budget: 4,096 bytes.
 
 ## `artifacts` tools
 
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
+
 ### `tuoni_capabilities`
 
 Show enabled profiles, limits, and missing-capability reasons. Optionally check backend version and identity.
@@ -1848,6 +1944,38 @@ Required arguments: None. Response budget: 4,096 bytes.
 </details>
 
 ## `discovery` tools
+
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
 
 ### `tuoni_capabilities`
 
@@ -2593,6 +2721,38 @@ Required arguments: `agent_guid`. Response budget: 6,144 bytes.
 
 </details>
 
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
+
 ### `tuoni_capabilities`
 
 Show enabled profiles, limits, and missing-capability reasons. Optionally check backend version and identity.
@@ -3322,6 +3482,38 @@ Required arguments: None. Response budget: 4,096 bytes.
 
 </details>
 
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
+
 ### `tuoni_capabilities`
 
 Show enabled profiles, limits, and missing-capability reasons. Optionally check backend version and identity.
@@ -3473,6 +3665,38 @@ Required arguments: None. Response budget: 4,096 bytes.
 
 ## `events` tools
 
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
+
 ### `tuoni_capabilities`
 
 Show enabled profiles, limits, and missing-capability reasons. Optionally check backend version and identity.
@@ -3566,6 +3790,38 @@ Required arguments: None. Response budget: 4,096 bytes.
 </details>
 
 ## `raw` tools
+
+### `tuoni_api_spec`
+
+Fetch the live OpenAPI specification from the connected Tuoni server. Always reflects the exact version you are connected to. Empty filter returns a paginated endpoint index; a path returns its full schema with component references resolved; text narrows by path, tag, or summary.
+
+Profiles: `access`, `administration`, `agent-ops`, `artifacts`, `authoring`, `discovery`, `events`, `raw`. Native effect: `read`. Read-only mode: **yes**. Dispatch: unavailable (raw is native-only).
+
+Required arguments: None. Response budget: 6,144 bytes.
+
+<details>
+<summary>Exact input schema</summary>
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "cursor": {
+      "description": "Continuation cursor from a previous call.",
+      "type": "string"
+    },
+    "filter": {
+      "default": "",
+      "description": "Case-insensitive search text. Empty returns a paginated list of every endpoint. An exact path (e.g. '/api/v1/agents') returns that endpoint's full schema with component references resolved. Otherwise lists endpoints whose path, tag, or summary contain the text.",
+      "maxLength": 256,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}
+```
+
+</details>
 
 ### `tuoni_capabilities`
 

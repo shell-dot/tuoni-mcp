@@ -45,7 +45,7 @@ def test_harness_emits_a_scorable_portable_document(evaluated) -> None:
     assert len(document["results"]) == 20 * len(PORTABLE_MODES)
     assert tuple(report["modes"]) == PORTABLE_MODES
     # Catalog identity is the portable run's whole benchmark profile.
-    assert report["modes"]["native"]["catalog_tools"] == 11
+    assert report["modes"]["native"]["catalog_tools"] == 12
     assert report["modes"]["dispatch"]["catalog_tools"] == 4
 
 

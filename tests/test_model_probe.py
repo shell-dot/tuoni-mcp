@@ -13,7 +13,7 @@ async def test_probe_follows_real_continuations_and_grades_the_account_answer(mo
     def respond(request):
         body = json.loads(request.content)
         assert body["model"] == "fixture"
-        assert len(body["tools"]) == (11 if mode == "native" else 4)
+        assert len(body["tools"]) == (12 if mode == "native" else 4)
         messages = body["messages"]
         if messages[-1]["role"] == "user":
             name, arguments = "tuoni_command_get", {"command_id": 1005}
